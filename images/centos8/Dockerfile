@@ -2,7 +2,7 @@
 # large image that's only used for testing.
 
 
-FROM centos:7
+FROM centos:8
 
 MAINTAINER Wu Tao <wutao1@xiaomi.com>
 
