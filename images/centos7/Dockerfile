@@ -23,7 +23,7 @@ RUN cd /tmp && wget http://ftp.gnu.org/gnu/gcc/gcc-7.5.0/gcc-7.5.0.tar.gz && \
 RUN git clone --recursive https://github.com/XiaoMi/pegasus.git /tmp/pegasus
 
 RUN cd /tmp/pegasus && \
-    ./run.sh build -c && \
+    ./run.sh build -c --clear_thirdparty && \
     ./run.sh pack_tools && \
     ./run.sh pack_server && \
     ./run.sh pack_client && \
