@@ -10,8 +10,8 @@ RUN yum -y install gcc-c++ automake autoconf libtool make python-devel git file 
     yum -y install openssl-devel boost-devel libaio-devel snappy-devel bzip2-devel zlib zlib-devel patch
 
 RUN cd /tmp && wget https://cmake.org/files/v3.10/cmake-3.10.2.tar.gz && \
-    tar zxvf cmake-3.10.2.tar.gz && \
-    cd cmake-3.10.2 && ./bootstrap && gmake && gmake install
+    tar zxvf cmake-3.10.2.tar.gz && cd cmake-3.10.2 && \
+    ./bootstrap && gmake && gmake install
 
 RUN cd /tmp && wget http://ftp.gnu.org/gnu/gcc/gcc-7.5.0/gcc-7.5.0.tar.gz && \
     tar -zvxf gcc-7.5.0.tar.gz --remove-files && cd gcc-7.5.0 && \
@@ -19,7 +19,8 @@ RUN cd /tmp && wget http://ftp.gnu.org/gnu/gcc/gcc-7.5.0/gcc-7.5.0.tar.gz && \
     ./configure --disable-multilib && make && make install
     
 RUN cd /tmp && wget https://nchc.dl.sourceforge.net/project/boost/boost/1.74.0/boost_1_74_0.tar.gz && \
-    tar xvf boost_1_74_0.tar.gz && cd boost_1_74_0 && ./bootstrap.sh && ./b2 install
+    tar xvf boost_1_74_0.tar.gz && cd boost_1_74_0 && \
+    ./bootstrap.sh && ./b2 install
     
 RUN git clone --recursive https://github.com/XiaoMi/pegasus.git /tmp/pegasus
 
