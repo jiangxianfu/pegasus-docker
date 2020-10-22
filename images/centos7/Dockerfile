@@ -15,7 +15,6 @@ RUN cd /tmp && wget https://cmake.org/files/v3.10/cmake-3.10.2-Linux-x86_64.tar.
 
 RUN cd /tmp && wget http://ftp.gnu.org/gnu/gcc/gcc-7.5.0/gcc-7.5.0.tar.gz && \
     tar -zvxf gcc-7.5.0.tar.gz --remove-files && cd gcc-7.5.0 && \
-    sed -i 's/ftp:\/\/gcc.gnu.org\/pub\/gcc\/infrastructure/http:\/\/mirror.linux-ia64.org\/gnu\/gcc\/infrastructure/g' contrib/download_prerequisites && \
     ./contrib/download_prerequisites && \
     ./configure --disable-multilib && make && make install
 
