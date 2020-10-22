@@ -7,7 +7,7 @@ RUN mkdir /pegasus
 WORKDIR /pegasus
 
 RUN apt-get update -y && \
-    apt-get -y install build-essential cmake libboost-system-dev libboost-filesystem-dev libboost-regex-dev \
+    apt-get -y install build-essential wget cmake libboost-system-dev libboost-filesystem-dev libboost-regex-dev \
                        libaio-dev libsnappy-dev libbz2-dev libtool \
                        zlib1g zlib1g.dev patch git curl zip automake libssl-dev
 
