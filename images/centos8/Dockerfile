@@ -6,7 +6,7 @@ RUN mkdir /pegasus
 
 WORKDIR /pegasus
 
-RUN yum -y install gcc gcc-c++ automake autoconf libtool make cmake git file wget unzip python-devel which && \
+RUN yum -y install gcc gcc-c++ automake autoconf libtool make cmake git file wget unzip which && \
     yum -y install openssl-devel boost-devel libaio-devel snappy-devel bzip2-devel zlib zlib-devel patch
 
 RUN git clone --recursive https://github.com/XiaoMi/pegasus.git /tmp/pegasus
