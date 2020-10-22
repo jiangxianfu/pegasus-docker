@@ -11,7 +11,7 @@ RUN apt-get update -y && \
                        libaio-dev libsnappy-dev libbz2-dev libtool \
                        zlib1g zlib1g.dev patch git curl zip automake libssl-dev
 
-RUN cd /tmp && wget https://nchc.dl.sourceforge.net/project/boost/boost/1.74.0/boost_1_74_0.tar.gz && \
+RUN cd /tmp && wget https://dl.bintray.com/boostorg/release/1.74.0/source/boost_1_74_0.tar.gz && \
     tar xvf boost_1_74_0.tar.gz && cd boost_1_74_0 && \
     ./bootstrap.sh && ./b2 install
 
