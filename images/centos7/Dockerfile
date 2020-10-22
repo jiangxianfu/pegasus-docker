@@ -18,7 +18,7 @@ RUN cd /tmp && wget http://ftp.gnu.org/gnu/gcc/gcc-7.5.0/gcc-7.5.0.tar.gz && \
     ./contrib/download_prerequisites && \
     ./configure --disable-multilib && make && make install
     
-RUN cd /tmp && wget https://nchc.dl.sourceforge.net/project/boost/boost/1.74.0/boost_1_74_0.tar.gz && \
+RUN cd /tmp && wget https://dl.bintray.com/boostorg/release/1.74.0/source/boost_1_74_0.tar.gz && \
     tar xvf boost_1_74_0.tar.gz && cd boost_1_74_0 && \
     ./bootstrap.sh && ./b2 install
     
