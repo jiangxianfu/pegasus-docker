@@ -9,8 +9,8 @@ WORKDIR /pegasus
 RUN yum -y install gcc-c++ automake autoconf libtool make python-devel git file wget unzip which && \
     yum -y install openssl-devel boost-devel libaio-devel snappy-devel bzip2-devel zlib zlib-devel patch
 
-RUN cd /tmp && wget https://cmake.org/files/v3.10/cmake-3.10.2-Linux-x86_64.tar.gz && \
-    tar zxvf cmake-3.10.2-Linux-x86_64.tar.gz && \
+RUN cd /tmp && wget https://cmake.org/files/v3.10/cmake-3.10.2.tar.gz && \
+    tar zxvf cmake-3.10.2.tar.gz && \
     cd cmake-3.10.2 && ./bootstrap && gmake && gmake install
 
 RUN cd /tmp && wget http://ftp.gnu.org/gnu/gcc/gcc-7.5.0/gcc-7.5.0.tar.gz && \
