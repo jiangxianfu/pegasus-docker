@@ -13,7 +13,7 @@ RUN apt-get update -y && \
 
 RUN git clone --recursive https://github.com/XiaoMi/pegasus.git /tmp/pegasus && \
     cd /tmp/pegasus && \
-    ./run.sh build -c && \
+    ./run.sh build -c --clear_thirdparty && \
     ./run.sh pack_tools && \
     ./run.sh pack_server && \
     ./run.sh pack_client && \
