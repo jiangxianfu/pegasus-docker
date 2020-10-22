@@ -1,18 +1,26 @@
 FROM ubuntu:18.04
 
-MAINTAINER WU TAO <wutao1@xiaomi.com>
+MAINTAINER steven
 
-RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/' /etc/apt/sources.list; \
-    apt-get update -y; \
+RUN mkdir /pegasus
+
+WORKDIR /pegasus
+
+RUN apt-get update -y; \
     apt-get -y install build-essential cmake libboost-system-dev libboost-filesystem-dev libboost-regex-dev \
                        libaio-dev libsnappy-dev libbz2-dev libtool \
                        zlib1g zlib1g.dev patch git curl zip automake libssl-dev;
 
-RUN git clone --recursive https://github.com/XiaoMi/pegasus.git /pegasus; \
-    cd /pegasus; \
-    ./run.sh build; \
+RUN git clone --recursive https://github.com/XiaoMi/pegasus.git /tmp/pegasus; \
+    cd /tmp/pegasus; \
+    ./run.sh build -c; \
     ./run.sh pack_tools; \
-    cp -r pegasus-tools-* /; cd /; rm -rf /pegasus \
-    rm pegasus-tools-*.tar.gz;
+    ./run.sh pack_server; \
+    ./run.sh pack_client; \
+	tar xvf pegasus-tools-*.tar.gz;cp -r pegasus-tools-* /pegasus;\
+	tar xvf pegasus-client-*.tar.gz;cp -r pegasus-client-* /pegasus;\
+	tar xvf pegasus-server-*.tar.gz;cp -r pegasus-server-* /pegasus;
+
+ENV LD_LIBRARY_PATH=/pegasus/bin
 
 RUN apt-get -y install default-jre nmap netcat
