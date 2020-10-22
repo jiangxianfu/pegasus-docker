@@ -11,12 +11,12 @@ RUN yum -y install gcc-c++ automake autoconf libtool make python-devel git file 
 
 RUN cd /tmp && wget https://cmake.org/files/v3.10/cmake-3.10.2-Linux-x86_64.tar.gz && \
     tar zxvf cmake-3.10.2-Linux-x86_64.tar.gz && \
-    cd cmake-3.10.2-Linux-x86_64 && ./bootstrap && gmake && gmake install
+    cd cmake-3.10.2 && ./bootstrap && gmake && gmake install
 
 RUN cd /tmp && wget http://ftp.gnu.org/gnu/gcc/gcc-7.5.0/gcc-7.5.0.tar.gz && \
     tar -zvxf gcc-7.5.0.tar.gz --remove-files && cd gcc-7.5.0 && \
     ./contrib/download_prerequisites && \
-    ./configure --disable-multilib && make && make install
+    ./configure --disable-multilib && make && make install    
 
     
 RUN git clone --recursive https://github.com/XiaoMi/pegasus.git /tmp/pegasus
