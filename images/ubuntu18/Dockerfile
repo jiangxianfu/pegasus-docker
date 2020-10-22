@@ -17,9 +17,9 @@ RUN git clone --recursive https://github.com/XiaoMi/pegasus.git /tmp/pegasus; \
     ./run.sh pack_tools; \
     ./run.sh pack_server; \
     ./run.sh pack_client; \
-	tar xvf pegasus-tools-*.tar.gz;cp -r pegasus-tools-* /pegasus;\
-	tar xvf pegasus-client-*.tar.gz;cp -r pegasus-client-* /pegasus;\
-	tar xvf pegasus-server-*.tar.gz;cp -r pegasus-server-* /pegasus;
+    tar xvf pegasus-tools-*.tar.gz;cp -r pegasus-tools-* /pegasus;\
+    tar xvf pegasus-client-*.tar.gz;cp -r pegasus-client-* /pegasus;\
+    tar xvf pegasus-server-*.tar.gz;cp -r pegasus-server-* /pegasus;
 
 ENV LD_LIBRARY_PATH=/pegasus/bin
 
