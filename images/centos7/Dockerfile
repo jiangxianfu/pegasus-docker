@@ -14,7 +14,7 @@ RUN cd /tmp && wget https://cmake.org/files/v3.10/cmake-3.10.2.tar.gz && \
     ./bootstrap && gmake && gmake install
 
 RUN cd /tmp && wget http://ftp.gnu.org/gnu/gcc/gcc-7.5.0/gcc-7.5.0.tar.gz && \
-    tar -zvxf gcc-7.5.0.tar.gz --remove-files && cd gcc-7.5.0 && \
+    tar -zvxf gcc-7.5.0.tar.gz && cd gcc-7.5.0 && \
     ./contrib/download_prerequisites && \
     ./configure --disable-multilib && make && make install
     
