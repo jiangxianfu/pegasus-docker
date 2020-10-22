@@ -6,12 +6,21 @@ RUN mkdir /pegasus
 
 WORKDIR /pegasus
 
-RUN yum -y install gcc gcc-c++ automake autoconf libtool make python-devel git file wget unzip which && \
+RUN yum -y install gcc-c++ automake autoconf libtool make python-devel git file wget unzip which && \
     yum -y install openssl-devel boost-devel libaio-devel snappy-devel bzip2-devel zlib zlib-devel patch
 
 RUN cd /tmp && wget https://cmake.org/files/v3.10/cmake-3.10.2-Linux-x86_64.tar.gz && \
     tar zxvf cmake-3.10.2-Linux-x86_64.tar.gz && \
     cd cmake-3.10.2-Linux-x86_64 && ./bootstrap && gmake && gmake install
+
+RUN cd /tmp && wget http://ftp.gnu.org/gnu/gcc/gcc-7.5.0/gcc-7.5.0.tar.gz && \
+    tar -zvxf gcc-7.5.0.tar.gz --remove-files && cd gcc-7.5.0 && \
+    sed -i 's/ftp:\/\/gcc.gnu.org\/pub\/gcc\/infrastructure/http:\/\/mirror.linux-ia64.org\/gnu\/gcc\/infrastructure/g' contrib/download_prerequisites && \
+    ./contrib/download_prerequisites && \
+    ./configure --disable-multilib && \
+    make -j`nproc` && \
+    make install -j`nproc`
+
     
 RUN git clone --recursive https://github.com/XiaoMi/pegasus.git /tmp/pegasus
 
