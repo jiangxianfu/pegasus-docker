@@ -6,7 +6,7 @@ RUN mkdir /pegasus
 
 WORKDIR /pegasus
 
-RUN yum -y install gcc-c++ bzip2 glibc automake autoconf libtool make python-devel git file wget unzip which && \
+RUN yum -y update && yum -y install gcc-c++ bzip2 glibc automake autoconf libtool make python-devel git file wget unzip which && \
     yum -y install glibc-devel openssl-devel boost-devel libaio-devel snappy-devel bzip2-devel zlib zlib-devel patch
 
 RUN cd /tmp && wget https://cmake.org/files/v3.10/cmake-3.10.2.tar.gz && \
