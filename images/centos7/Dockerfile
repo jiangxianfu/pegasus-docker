@@ -6,9 +6,13 @@ RUN mkdir /pegasus
 
 WORKDIR /pegasus
 
-RUN yum -y update && \
-    yum -y install gcc-c++ bzip2 glibc automake autoconf libtool make python-devel git file wget unzip which \
-                   glibc-devel openssl-devel boost-devel libaio-devel snappy-devel bzip2-devel zlib zlib-devel patch
+RUN yum -y update && yum -y install epel-release && \
+    yum -y install gcc-c++ bzip2 glibc automake autoconf libtool make python-devel \
+                   git file wget unzip which \
+                   glibc-devel openssl-devel boost-devel libaio-devel snappy-devel \
+                   bzip2-devel zlib patch \
+                   zlib-devel lz4-devel \
+                   libzstd-devel
 
 RUN cd /tmp && wget https://cmake.org/files/v3.10/cmake-3.10.2.tar.gz && \
     tar zxvf cmake-3.10.2.tar.gz && cd cmake-3.10.2 && \
@@ -18,11 +22,11 @@ RUN cd /tmp && wget http://ftp.gnu.org/gnu/gcc/gcc-7.5.0/gcc-7.5.0.tar.gz && \
     tar -zvxf gcc-7.5.0.tar.gz && cd gcc-7.5.0 && \
     ./contrib/download_prerequisites && \
     ./configure && make && make install
-    
+
 RUN cd /tmp && wget https://dl.bintray.com/boostorg/release/1.74.0/source/boost_1_74_0.tar.gz && \
     tar xvf boost_1_74_0.tar.gz && cd boost_1_74_0 && \
     ./bootstrap.sh && ./b2 install
-    
+
 RUN git clone --recursive https://github.com/apache/incubator-pegasus.git /tmp/pegasus
 
 RUN cd /tmp/pegasus && \
