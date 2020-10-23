@@ -17,7 +17,7 @@ RUN cd /tmp && wget https://cmake.org/files/v3.10/cmake-3.10.2.tar.gz && \
 RUN cd /tmp && wget http://ftp.gnu.org/gnu/gcc/gcc-7.5.0/gcc-7.5.0.tar.gz && \
     tar -zvxf gcc-7.5.0.tar.gz && cd gcc-7.5.0 && \
     ./contrib/download_prerequisites && \
-    ./configure --disable-multilib && make && make install
+    ./configure && make && make install
     
 RUN cd /tmp && wget https://dl.bintray.com/boostorg/release/1.74.0/source/boost_1_74_0.tar.gz && \
     tar xvf boost_1_74_0.tar.gz && cd boost_1_74_0 && \
