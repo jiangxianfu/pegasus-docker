@@ -10,8 +10,7 @@ WORKDIR /pegasus
 RUN cd /tmp && tar zxvf cmake-3.10.2.tar.gz && cd cmake-3.10.2 && \
     ./bootstrap && gmake && gmake install
 
-RUN cd /tmp && tar -zvxf gcc-7.5.0.tar.gz && cd gcc-7.5.0 && \
-    ./contrib/download_prerequisites && \
+RUN cd /tmp/gcc-7.5.0 && \
     ./configure && make && make install
 
 RUN cd /tmp && tar xvf boost_1_74_0.tar.gz && cd boost_1_74_0 && \
