@@ -15,7 +15,7 @@ RUN cd /tmp && wget https://dl.bintray.com/boostorg/release/1.74.0/source/boost_
     tar xvf boost_1_74_0.tar.gz && cd boost_1_74_0 && \
     ./bootstrap.sh && ./b2 install
 
-RUN git clone --recursive https://github.com/XiaoMi/pegasus.git /tmp/pegasus && \
+RUN git clone --recursive https://github.com/apache/incubator-pegasus.git /tmp/pegasus && \
     cd /tmp/pegasus && \
     ./run.sh build -c --clear_thirdparty && \
     ./run.sh pack_tools && \
