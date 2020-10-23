@@ -1,0 +1,21 @@
+FROM centos:7
+
+MAINTAINER steven
+
+RUN yum -y update && yum -y install epel-release && \
+    yum -y install gcc-c++ bzip2 glibc automake autoconf libtool make python-devel \
+                   git file wget unzip which \
+                   glibc-devel openssl-devel boost-devel libaio-devel snappy-devel \
+                   bzip2-devel zlib patch \
+                   zlib-devel lz4-devel \
+                   libzstd-devel
+
+RUN cd /tmp && wget https://cmake.org/files/v3.10/cmake-3.10.2.tar.gz
+
+RUN cd /tmp && wget http://ftp.gnu.org/gnu/gcc/gcc-7.5.0/gcc-7.5.0.tar.gz
+
+RUN cd /tmp && wget https://dl.bintray.com/boostorg/release/1.74.0/source/boost_1_74_0.tar.gz
+
+RUN git clone --recursive https://github.com/apache/incubator-pegasus.git /tmp/pegasus
+
+RUN yum -y install jre nmap-ncat.x86_64
