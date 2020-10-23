@@ -4,109 +4,135 @@ networks:
   frontend:
     ipam:
       config:
-        - subnet: @NODE_IP_PREFIX@.0/24
+        - subnet: 172.21.0.0/24
 services:
+  zookeeper:
+    image: pegasus:latest
+    ports:
+      - "22181"
+    volumes:
+      - ./config.ini:/pegasus/bin/config.ini:ro
+    command: 
+      - ./run.sh
+      - start_zk
+    privileged: true
+    networks:
+      frontend:
+         ipv4_address: 172.21.0.10
+    restart: on-failure
   meta1:
-    image: @IMAGE_NAME@
+    image: pegasus:latest
     ports:
       - "34601"
     volumes:
       - ./config.ini:/pegasus/bin/config.ini:ro
-      - ./meta1/data:/pegasus/data
+      - meta1-data-volume::/pegasus/data
     command:
       - meta
     privileged: true
     networks:
       frontend:
-        ipv4_address: @NODE_IP_PREFIX@.11
+         ipv4_address: 172.21.0.11
     restart: on-failure
   meta2:
-    image: @IMAGE_NAME@
+    image: pegasus:latest
     ports:
       - "34601"
     volumes:
       - ./config.ini:/pegasus/bin/config.ini:ro
-      - ./meta2/data:/pegasus/data
+      - meta2-data-volume::/pegasus/data
     command:
       - meta
     privileged: true
     networks:
       frontend:
-        ipv4_address: @NODE_IP_PREFIX@.12
+        ipv4_address: 172.21.0.12
     restart: on-failure
   replica1:
-    image: @IMAGE_NAME@
+    image: pegasus:latest
     ports:
       - "34801"
     volumes:
       - ./config.ini:/pegasus/bin/config.ini:ro
-      - ./replica1/data:/pegasus/data
-      - ./replica1/slog:/pegasus/slog
+      - replica1-data-volumne:/pegasus/data
+      - replica1-slog-volumne:/pegasus/slog
     command:
       - replica
     privileged: true
     networks:
       frontend:
-        ipv4_address: @NODE_IP_PREFIX@.21
+        ipv4_address: 172.21.0.21
     restart: on-failure
   replica2:
-    image: @IMAGE_NAME@
+    image: pegasus:latest
     ports:
       - "34801"
     volumes:
       - ./config.ini:/pegasus/bin/config.ini:ro
-      - ./replica2/data:/pegasus/data
-      - ./replica2/slog:/pegasus/slog
+      - replica2-data-volumne:/pegasus/data
+      - replica2-slog-volumne:/pegasus/slog
     command:
       - replica
     privileged: true
     networks:
       frontend:
-        ipv4_address: @NODE_IP_PREFIX@.22
+        ipv4_address: 172.21.0.22
     restart: on-failure
   replica3:
-    image: @IMAGE_NAME@
+    image: pegasus:latest
     ports:
       - "34801"
     volumes:
       - ./config.ini:/pegasus/bin/config.ini:ro
-      - ./replica3/data:/pegasus/data
-      - ./replica3/slog:/pegasus/slog
+      - replica3-data-volumne:/pegasus/data
+      - replica3-slog-volumne:/pegasus/slog
     command:
       - replica
     privileged: true
     networks:
       frontend:
-        ipv4_address: @NODE_IP_PREFIX@.23
+        ipv4_address: 172.21.0.23
     restart: on-failure
   replica4:
-    image: @IMAGE_NAME@
+    image: pegasus:latest
     ports:
       - "34801"
     volumes:
       - ./config.ini:/pegasus/bin/config.ini:ro
-      - ./replica4/data:/pegasus/data
-      - ./replica4/slog:/pegasus/slog
+      - replica4-data-volumne:/pegasus/data
+      - replica4-slog-volumne:/pegasus/slog
     command:
       - replica
     privileged: true
     networks:
       frontend:
-        ipv4_address: @NODE_IP_PREFIX@.24
+        ipv4_address: 172.21.0.24
     restart: on-failure
   replica5:
-    image: @IMAGE_NAME@
+    image: pegasus:latest
     ports:
       - "34801"
     volumes:
       - ./config.ini:/pegasus/bin/config.ini:ro
-      - ./replica5/data:/pegasus/data
-      - ./replica5/slog:/pegasus/slog
+      - replica5-data-volumne:/pegasus/data
+      - replica5-slog-volumne:/pegasus/slog
     command:
       - replica
     privileged: true
     networks:
       frontend:
-        ipv4_address: @NODE_IP_PREFIX@.25
+        ipv4_address: 172.21.0.25
     restart: on-failure
-
+volumes:
+  meta1-data-volume:
+  meta2-data-volume:
+  replica1-data-volumne:
+  replica2-data-volumne:
+  replica3-data-volumne:
+  replica4-data-volumne:
+  replica5-data-volumne:
+  replica1-slog-volumne:
+  replica2-slog-volumne:
+  replica3-slog-volumne:
+  replica4-slog-volumne:
+  replica5-slog-volumne:
