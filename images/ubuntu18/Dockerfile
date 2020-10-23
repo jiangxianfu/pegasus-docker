@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM jiangxianfu/pegasus-docker:ubuntu18-package
 
 MAINTAINER steven
 
@@ -6,17 +6,9 @@ RUN mkdir /pegasus
 
 WORKDIR /pegasus
 
-RUN apt-get update -y && \
-    apt-get -y install build-essential wget cmake libboost-all-dev \
-                       libaio-dev libsnappy-dev libbz2-dev libtool \
-                       zlib1g zlib1g.dev patch git curl zip unzip automake \
-                       libssl-dev libgflags-dev liblz4-dev libzstd-dev
-
-RUN cd /tmp && wget https://dl.bintray.com/boostorg/release/1.74.0/source/boost_1_74_0.tar.gz && \
-    tar xvf boost_1_74_0.tar.gz && cd boost_1_74_0 && \
+RUN cd /tmp && tar xvf boost_1_74_0.tar.gz && cd boost_1_74_0 && \
     ./bootstrap.sh && ./b2 install
 
-RUN git clone --recursive https://github.com/apache/incubator-pegasus.git /tmp/pegasus
 RUN cd /tmp/pegasus && \
     ./run.sh build -c --clear_thirdparty && \
     ./run.sh pack_tools && \
