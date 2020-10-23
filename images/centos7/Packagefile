@@ -17,6 +17,6 @@ RUN cd /tmp && wget http://ftp.gnu.org/gnu/gcc/gcc-7.5.0/gcc-7.5.0.tar.gz && \
 
 RUN cd /tmp && wget https://dl.bintray.com/boostorg/release/1.74.0/source/boost_1_74_0.tar.gz
 
-RUN git clone --recursive https://github.com/apache/incubator-pegasus.git /tmp/pegasus
+RUN git clone --recursive https://github.com/xiaomi/pegasus.git /tmp/pegasus
 
 RUN yum -y install jre nmap-ncat.x86_64
