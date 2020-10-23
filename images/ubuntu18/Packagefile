@@ -9,6 +9,6 @@ RUN apt-get update -y && \
                        libssl-dev libgflags-dev liblz4-dev libzstd-dev
 
 RUN cd /tmp && wget https://dl.bintray.com/boostorg/release/1.74.0/source/boost_1_74_0.tar.gz
-RUN git clone --recursive https://github.com/apache/incubator-pegasus.git /tmp/pegasus
+RUN git clone --recursive https://github.com/xiaomi/pegasus.git /tmp/pegasus
 
 RUN apt-get -y install default-jre nmap netcat
