@@ -3,11 +3,16 @@ FROM ubuntu:18.04
 MAINTAINER steven
 
 RUN apt-get update -y && \
-    apt-get -y install build-essential wget cmake libboost-all-dev \
+    apt-get -y install build-essential wget libboost-all-dev \
                        libaio-dev libsnappy-dev libbz2-dev libtool \
                        zlib1g zlib1g.dev patch git curl zip unzip automake \
                        libssl-dev libgflags-dev liblz4-dev libzstd-dev \
-                       default-jre nmap netcat
+                       default-jre nmap netcat \
+                       byacc flex bison
+
+RUN cd /tmp && wget https://cmake.org/files/v3.18/cmake-3.18.4.tar.gz && \
+	tar zxvf cmake-3.18.4.tar.gz && cd cmake-3.18.4 && \
+    ./bootstrap && gmake && gmake install
 
 RUN git clone --recursive https://github.com/xiaomi/pegasus.git /pegasus
 
