@@ -8,7 +8,7 @@ RUN apt-get update -y && \
                        zlib1g zlib1g.dev patch git curl zip unzip automake \
                        libssl-dev libgflags-dev liblz4-dev libzstd-dev \
                        default-jre nmap netcat \
-                       byacc flex bison
+                       byacc flex bison gmake
 
 RUN cd /tmp && wget https://cmake.org/files/v3.18/cmake-3.18.4.tar.gz && \
     tar zxvf cmake-3.18.4.tar.gz && cd cmake-3.18.4 && \

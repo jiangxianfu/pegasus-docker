@@ -9,7 +9,7 @@ RUN yum -y update && yum -y install epel-release && \
                    bzip2-devel zlib patch \
                    zlib-devel lz4-devel \
                    libzstd-devel jre nmap-ncat.x86_64 \
-                   byacc flex bison
+                   byacc flex bison gmake
 
 RUN cd /tmp && wget https://cmake.org/files/v3.18/cmake-3.18.4.tar.gz && \
     tar zxvf cmake-3.18.4.tar.gz && cd cmake-3.18.4 && \
