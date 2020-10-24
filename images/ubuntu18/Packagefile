@@ -14,6 +14,7 @@ RUN cd /tmp && wget https://cmake.org/files/v3.18/cmake-3.18.4.tar.gz && \
     tar zxvf cmake-3.18.4.tar.gz && cd cmake-3.18.4 && \
     ./bootstrap && make && make install
 RUN cmake --version
+RUN gcc --version
 
 RUN git clone --recursive https://github.com/xiaomi/pegasus.git /pegasus
 
