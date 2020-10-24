@@ -8,11 +8,11 @@ RUN apt-get update -y && \
                        zlib1g zlib1g.dev patch git curl zip unzip automake \
                        libssl-dev libgflags-dev liblz4-dev libzstd-dev \
                        default-jre nmap netcat \
-                       byacc flex bison gmake
+                       byacc flex bison g++
 
 RUN cd /tmp && wget https://cmake.org/files/v3.18/cmake-3.18.4.tar.gz && \
     tar zxvf cmake-3.18.4.tar.gz && cd cmake-3.18.4 && \
-    ./bootstrap && gmake && gmake install
+    ./bootstrap && make && make install
 
 RUN git clone --recursive https://github.com/xiaomi/pegasus.git /pegasus
 
