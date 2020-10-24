@@ -7,7 +7,7 @@ RUN yum -y update && yum -y install epel-release && \
                    git file wget unzip which \
                    glibc-devel openssl-devel boost-devel libaio-devel snappy-devel \
                    bzip2-devel zlib patch \
-                   zlib-devel lz4-devel gmp-devel mpfr-devel libmpc-devel\
+                   zlib-devel lz4-devel gmp-devel mpfr-devel libmpc-devel \
                    libzstd-devel jre nmap-ncat.x86_64 \
                    byacc flex bison
 
