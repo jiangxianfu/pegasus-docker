@@ -3,7 +3,7 @@ FROM centos:7
 MAINTAINER steven
 
 RUN yum -y update && yum -y install epel-release && \
-    yum -y install gcc gcc-c++ bzip2 glibc automake autoconf libtool make python-devel \
+    yum -y install gcc-c++ bzip2 glibc automake autoconf libtool make python-devel \
                    git file wget unzip which \
                    glibc-devel openssl-devel boost-devel libaio-devel snappy-devel \
                    bzip2-devel zlib patch \
