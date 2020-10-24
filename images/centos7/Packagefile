@@ -18,10 +18,6 @@ RUN cd /tmp && wget http://ftp.gnu.org/gnu/gcc/gcc-7.5.0/gcc-7.5.0.tar.gz && \
     tar -zvxf gcc-7.5.0.tar.gz && cd gcc-7.5.0 && \
     ./contrib/download_prerequisites && ./configure && make && make install
 
-RUN cd /tmp && wget https://dl.bintray.com/boostorg/release/1.74.0/source/boost_1_74_0.tar.gz && \
-	tar xvf boost_1_74_0.tar.gz && cd boost_1_74_0 && \
-    ./bootstrap.sh && ./b2 install
-
 RUN git clone --recursive https://github.com/xiaomi/pegasus.git /pegasus
 
 WORKDIR /pegasus
