@@ -11,7 +11,7 @@ RUN yum -y update && yum -y install epel-release && \
                    libzstd-devel jre nmap-ncat.x86_64
 
 RUN cd /tmp && wget https://cmake.org/files/v3.10/cmake-3.10.2.tar.gz && \
-	tar zxvf cmake-3.10.2.tar.gz && cd cmake-3.10.2 && \
+    tar zxvf cmake-3.10.2.tar.gz && cd cmake-3.10.2 && \
     ./bootstrap && gmake && gmake install
 
 RUN cd /tmp && wget http://ftp.gnu.org/gnu/gcc/gcc-7.5.0/gcc-7.5.0.tar.gz && \
