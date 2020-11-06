@@ -7,8 +7,8 @@ RUN yum -y install centos-release-scl scl-utils epel-release; \
                    automake autoconf make libtool git file wget \
                    unzip which openssl-devel libaio-devel \
                    snappy-devel bzip2-devel zlib zlib-devel \
-                   libzstd-devel lz4-devel bison \
-                   flex patch; \
+                   libzstd-devel lz4-devel bison flex patch \
+                   ccache zip java-1.8.0-openjdk nmap-ncat \
     yum -y remove gcc g++; \
     yum clean all; rm -rf /var/cache/yum
 
