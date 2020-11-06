@@ -1,28 +1,17 @@
-FROM centos:7
+FROM centos:7.5.1804
 
 MAINTAINER steven
 
-RUN yum -y update && yum -y install epel-release && \
-    yum -y install gcc-c++ bzip2 glibc automake autoconf libtool make python-devel \
-                   git file wget unzip which \
-                   glibc-devel openssl-devel boost-devel libaio-devel snappy-devel \
-                   bzip2-devel zlib patch \
-                   zlib-devel lz4-devel gmp-devel mpfr-devel libmpc-devel \
-                   libzstd-devel jre nmap-ncat.x86_64 \
-                   byacc flex bison
+RUN yum -y install centos-release-scl scl-utils epel-release; \
+    yum -y install devtoolset-7-gcc devtoolset-7-gcc-c++ python3 \
+                   automake autoconf make libtool git file wget \
+                   unzip which openssl-devel libaio-devel \
+                   snappy-devel bzip2-devel zlib zlib-devel \
+                   libzstd-devel lz4-devel bison \
+                   flex patch; \
+    yum -y remove gcc g++; \
+    yum clean all; rm -rf /var/cache/yum
 
-RUN cd /tmp && wget https://cmake.org/files/v3.18/cmake-3.18.4.tar.gz && \
-    tar zxvf cmake-3.18.4.tar.gz && cd cmake-3.18.4 && \
-    ./bootstrap && gmake && gmake install
-RUN cmake --version
+RUN pip3 install --no-cache-dir cmake
 
-RUN cd /tmp && wget http://ftp.gnu.org/gnu/gcc/gcc-7.5.0/gcc-7.5.0.tar.gz && \
-    tar -zvxf gcc-7.5.0.tar.gz && cd gcc-7.5.0 && \
-    ./contrib/download_prerequisites && \
-    ./configure --disable-multilib && \
-    make && make install
-RUN gcc --version
-
-RUN git clone --recursive https://github.com/xiaomi/pegasus.git /pegasus
-
-WORKDIR /pegasus
+ENV PATH="/opt/rh/devtoolset-7/root/bin/:${PATH}"

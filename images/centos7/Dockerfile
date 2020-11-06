@@ -2,5 +2,8 @@ FROM jiangxianfu/pegasus-docker:centos7-package
 
 MAINTAINER steven
 
-RUN cd /pegasus && \
-    ./run.sh build
+RUN git clone --recursive https://github.com/xiaomi/pegasus.git /pegasus
+
+WORKDIR /pegasus
+
+RUN cd /pegasus && ./run.sh build

@@ -2,20 +2,13 @@ FROM ubuntu:18.04
 
 MAINTAINER steven
 
-RUN apt-get update -y && \
-    apt-get -y install build-essential wget libboost-all-dev \
-                       libaio-dev libsnappy-dev libbz2-dev libtool \
-                       zlib1g zlib1g.dev patch git curl zip unzip automake \
-                       libssl-dev libgflags-dev liblz4-dev libzstd-dev \
-                       default-jre nmap netcat \
-                       byacc flex bison g++
+RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/' /etc/apt/sources.list; \
+    apt-get update -y; \
+    apt-get -y install build-essential python3-pip libaio-dev \
+                       libsnappy-dev libbz2-dev libzstd-dev \
+                       liblz4-dev zlib1g zlib1g.dev \
+                       patch git curl zip automake \
+                       libtool libssl-dev bison flex; \
+    rm -rf /var/lib/apt/lists/*
 
-RUN cd /tmp && wget https://cmake.org/files/v3.18/cmake-3.18.4.tar.gz && \
-    tar zxvf cmake-3.18.4.tar.gz && cd cmake-3.18.4 && \
-    ./bootstrap && make && make install
-RUN cmake --version
-RUN gcc --version
-
-RUN git clone --recursive https://github.com/xiaomi/pegasus.git /pegasus
-
-WORKDIR /pegasus
+RUN pip3 install --no-cache-dir cmake
