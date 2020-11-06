@@ -1,138 +1,51 @@
-version: '3.3'
+version: "3.3"
 
 networks:
   frontend:
     ipam:
       config:
-        - subnet: 172.21.0.0/24
+        - subnet: 172.21.0.255/24
 services:
   zookeeper:
-    image: pegasus:latest
+    image: zookeeper:3.4
     ports:
-      - "22181"
-    volumes:
-      - ./config.ini:/pegasus/bin/config.ini:ro
-    command: 
-      - ./run.sh
-      - start_zk
-    privileged: true
+      - "2181"
+    restart: on-failure
+    hostname: zookeeper
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: server.1=zookeeper:2888:3888
     networks:
       frontend:
-         ipv4_address: 172.21.0.10
-    restart: on-failure
   meta1:
-    image: pegasus:latest
+    image: jiangxianfu/pegasus-docker:centos7
     ports:
-      - "34601"
+      - 34601:34601
     volumes:
       - ./config.ini:/pegasus/bin/config.ini:ro
-      - meta1-data-volume::/pegasus/data
+      - meta1-data-volume:/pegasus/data
     command:
       - meta
     privileged: true
     networks:
       frontend:
-         ipv4_address: 172.21.0.11
-    restart: on-failure
-  meta2:
-    image: pegasus:latest
-    ports:
-      - "34601"
-    volumes:
-      - ./config.ini:/pegasus/bin/config.ini:ro
-      - meta2-data-volume::/pegasus/data
-    command:
-      - meta
-    privileged: true
-    networks:
-      frontend:
-        ipv4_address: 172.21.0.12
+        ipv4_address: 172.21.0.11
     restart: on-failure
   replica1:
-    image: pegasus:latest
+    image: jiangxianfu/pegasus-docker:centos7
     ports:
-      - "34801"
+      - 34801
     volumes:
       - ./config.ini:/pegasus/bin/config.ini:ro
-      - replica1-data-volumne:/pegasus/data
-      - replica1-slog-volumne:/pegasus/slog
+      - ./replica1/data:/pegasus/data
+      - ./replica1/slog:/pegasus/slog
     command:
       - replica
     privileged: true
+    restart: on-failure
     networks:
       frontend:
-        ipv4_address: 172.21.0.21
-    restart: on-failure
-  replica2:
-    image: pegasus:latest
-    ports:
-      - "34801"
-    volumes:
-      - ./config.ini:/pegasus/bin/config.ini:ro
-      - replica2-data-volumne:/pegasus/data
-      - replica2-slog-volumne:/pegasus/slog
-    command:
-      - replica
-    privileged: true
-    networks:
-      frontend:
-        ipv4_address: 172.21.0.22
-    restart: on-failure
-  replica3:
-    image: pegasus:latest
-    ports:
-      - "34801"
-    volumes:
-      - ./config.ini:/pegasus/bin/config.ini:ro
-      - replica3-data-volumne:/pegasus/data
-      - replica3-slog-volumne:/pegasus/slog
-    command:
-      - replica
-    privileged: true
-    networks:
-      frontend:
-        ipv4_address: 172.21.0.23
-    restart: on-failure
-  replica4:
-    image: pegasus:latest
-    ports:
-      - "34801"
-    volumes:
-      - ./config.ini:/pegasus/bin/config.ini:ro
-      - replica4-data-volumne:/pegasus/data
-      - replica4-slog-volumne:/pegasus/slog
-    command:
-      - replica
-    privileged: true
-    networks:
-      frontend:
-        ipv4_address: 172.21.0.24
-    restart: on-failure
-  replica5:
-    image: pegasus:latest
-    ports:
-      - "34801"
-    volumes:
-      - ./config.ini:/pegasus/bin/config.ini:ro
-      - replica5-data-volumne:/pegasus/data
-      - replica5-slog-volumne:/pegasus/slog
-    command:
-      - replica
-    privileged: true
-    networks:
-      frontend:
-        ipv4_address: 172.21.0.25
-    restart: on-failure
 volumes:
   meta1-data-volume:
-  meta2-data-volume:
   replica1-data-volumne:
-  replica2-data-volumne:
-  replica3-data-volumne:
-  replica4-data-volumne:
-  replica5-data-volumne:
   replica1-slog-volumne:
-  replica2-slog-volumne:
-  replica3-slog-volumne:
-  replica4-slog-volumne:
-  replica5-slog-volumne:
