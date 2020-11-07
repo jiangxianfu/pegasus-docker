@@ -7,7 +7,7 @@ RUN apt-get update -y; \
                        liblz4-dev zlib1g zlib1g.dev \
                        patch git curl zip automake \
                        libtool libssl-dev bison flex \
-                       ccache java-1.8.0-openjdk nmap netcat; \
+                       ccache openjdk-8-jdk nmap netcat; \
     rm -rf /var/lib/apt/lists/*
 RUN whereis pip3
 RUN pip3 install --no-cache-dir cmake
