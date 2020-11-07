@@ -9,11 +9,11 @@ RUN apt-get update -y; \
                        patch git curl zip automake \
                        libtool libssl-dev bison flex \
                        ccache openjdk-8-jdk nmap netcat; \
-    rm -rf /var/lib/apt/lists/*
+    apt-get clean;rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install --no-cache-dir cmake
 
-RUN git clone --recursive https://github.com/xiaomi/pegasus.git /pegasus
+RUN git clone --recursive https://github.com/apache/incubator-pegasus.git /pegasus
 
 WORKDIR /pegasus
 

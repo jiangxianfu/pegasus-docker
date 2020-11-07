@@ -16,7 +16,7 @@ RUN pip3 install --no-cache-dir cmake
 
 ENV PATH="/opt/rh/devtoolset-7/root/bin/:${PATH}"
 
-RUN git clone --recursive https://github.com/xiaomi/pegasus.git /pegasus
+RUN git clone --recursive https://github.com/apache/incubator-pegasus.git /pegasus
 
 WORKDIR /pegasus
 
