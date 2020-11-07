@@ -25,12 +25,14 @@ RUN tar xvf /pegasus-client-$BUILD_VERSION.tar.gz; \
 
 COPY ./pegasus-tools-$BUILD_VERSION.tar.gz /
 RUN tar xvf /pegasus-tools-$BUILD_VERSION.tar.gz; \
-    mv pegasus-tools-$BUILD_VERSION pegasus; \
+    mv -f pegasus-tools-$BUILD_VERSION/* pegasus; \
+    rm -rf pegasus-tools-$BUILD_VERSION; \
     rm pegasus-tools-$BUILD_VERSION.tar.gz
 
 COPY ./pegasus-server-$BUILD_VERSION.tar.gz /
 RUN tar xvf /pegasus-server-$BUILD_VERSION.tar.gz; \
-    mv pegasus-server-$BUILD_VERSION pegasus; \
+    mv -f pegasus-server-$BUILD_VERSION/* pegasus; \
+    rm -rf pegasus-server-$BUILD_VERSION; \
     rm pegasus-server-$BUILD_VERSION.tar.gz
 
 ENV LD_LIBRARY_PATH=/pegasus/bin
