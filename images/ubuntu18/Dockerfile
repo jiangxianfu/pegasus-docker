@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 MAINTAINER steven
 
-RUN apt-get update -y; \
+RUN apt-get -y update; \
     apt-get -y install build-essential python3-pip libaio-dev \
                        libsnappy-dev libbz2-dev libzstd-dev \
                        liblz4-dev zlib1g zlib1g.dev \
