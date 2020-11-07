@@ -18,7 +18,7 @@ services:
     networks:
       frontend:
   meta1:
-    image: jiangxianfu/pegasus-docker:centos7
+    image: jiangxianfu/pegasus-docker:latest
     ports:
       - 34601:34601
     volumes:
@@ -32,7 +32,7 @@ services:
         ipv4_address: 172.21.0.11
     restart: on-failure
   replica1:
-    image: jiangxianfu/pegasus-docker:centos7
+    image: jiangxianfu/pegasus-docker:latest
     ports:
       - 34801
     volumes:
