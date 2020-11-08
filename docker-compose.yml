@@ -37,10 +37,23 @@ services:
       - 34801
     volumes:
       - ./config.ini:/pegasus/bin/config.ini:ro
-      - ./replica1/data:/pegasus/data
-      - ./replica1/slog:/pegasus/slog
+      - replica1-data-volumne:/pegasus/data
+      - replica1-slog-volumne:/pegasus/slog
     command:
       - replica
+    privileged: true
+    restart: on-failure
+    networks:
+      frontend:
+  collector1:
+    image: jiangxianfu/pegasus-docker:latest
+    ports:
+      - 34101
+    volumes:
+      - ./config.ini:/pegasus/bin/config.ini:ro
+      - collector1-data-volumne:/pegasus/data
+    command:
+      - collector
     privileged: true
     restart: on-failure
     networks:
@@ -49,3 +62,4 @@ volumes:
   meta1-data-volume:
   replica1-data-volumne:
   replica1-slog-volumne:
+  collector1-data-volumne:
