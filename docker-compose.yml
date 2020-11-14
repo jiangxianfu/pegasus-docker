@@ -45,20 +45,6 @@ services:
       frontend:
         ipv4_address: 172.21.0.12
     restart: on-failure
-  meta3:
-    image: jiangxianfu/pegasus-docker:latest
-    ports:
-      - "34601"
-    volumes:
-      - ./config.ini:/pegasus/bin/config.ini:ro
-      - meta3-data-volume:/pegasus/data
-    command:
-      - meta
-    privileged: true
-    networks:
-      frontend:
-        ipv4_address: 172.21.0.13
-    restart: on-failure
   replica1:
     image: jiangxianfu/pegasus-docker:latest
     ports:
@@ -117,7 +103,6 @@ services:
 volumes:
   meta1-data-volume:
   meta2-data-volume:
-  meta3-data-volume:
   replica1-data-volumne:
   replica1-slog-volumne:
   replica2-data-volumne:
