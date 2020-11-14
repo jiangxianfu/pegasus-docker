@@ -21,7 +21,7 @@ services:
     hostname: meta1
     image: jiangxianfu/pegasus-docker:latest
     ports:
-      - 34601
+      - "34601"
     volumes:
       - ./config.ini:/pegasus/bin/config.ini:ro
       - meta1-data-volume:/pegasus/data
@@ -36,7 +36,7 @@ services:
     hostname: meta2
     image: jiangxianfu/pegasus-docker:latest
     ports:
-      - 34602
+      - "34601"
     volumes:
       - ./config.ini:/pegasus/bin/config.ini:ro
       - meta2-data-volume:/pegasus/data
@@ -51,7 +51,7 @@ services:
     hostname: meta3
     image: jiangxianfu/pegasus-docker:latest
     ports:
-      - 34603
+      - "34601"
     volumes:
       - ./config.ini:/pegasus/bin/config.ini:ro
       - meta3-data-volume:/pegasus/data
@@ -66,7 +66,7 @@ services:
     hostname: replica1
     image: jiangxianfu/pegasus-docker:latest
     ports:
-      - 34801
+      - "34801"
     volumes:
       - ./config.ini:/pegasus/bin/config.ini:ro
       - replica1-data-volumne:/pegasus/data
@@ -81,7 +81,7 @@ services:
     hostname: replica2
     image: jiangxianfu/pegasus-docker:latest
     ports:
-      - 34802
+      - "34801"
     volumes:
       - ./config.ini:/pegasus/bin/config.ini:ro
       - replica2-data-volumne:/pegasus/data
@@ -96,7 +96,7 @@ services:
     hostname: replica3
     image: jiangxianfu/pegasus-docker:latest
     ports:
-      - 34803
+      - "34801"
     volumes:
       - ./config.ini:/pegasus/bin/config.ini:ro
       - replica3-data-volumne:/pegasus/data
@@ -111,7 +111,7 @@ services:
     hostname: collector1
     image: jiangxianfu/pegasus-docker:latest
     ports:
-      - 34101
+      - "34101"
     volumes:
       - ./config.ini:/pegasus/bin/config.ini:ro
       - collector1-data-volumne:/pegasus/data
