@@ -9,6 +9,7 @@ RUN yum -y install centos-release-scl scl-utils epel-release; \
                    snappy-devel bzip2-devel zlib zlib-devel \
                    libzstd-devel lz4-devel bison flex patch \
                    java-1.8.0-openjdk nmap-ncat \
+                   initscripts net-tools vim telnet \
     yum clean all; rm -rf /var/cache/yum
 
 ENV BUILD_VERSION=2.1.SNAPSHOT-27e9eef-glibc2.17-release
