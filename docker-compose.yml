@@ -7,7 +7,6 @@ networks:
         - subnet: 172.21.0.255/24
 services:
   zookeeper:
-    container_name: zookeeper
     hostname: zookeeper
     image: zookeeper:3.4
     ports:
@@ -19,7 +18,6 @@ services:
     networks:
       frontend:
   meta1:
-    container_name: meta1
     image: jiangxianfu/pegasus-docker:latest
     ports:
       - "34601"
@@ -34,7 +32,6 @@ services:
         ipv4_address: 172.21.0.11
     restart: on-failure
   meta2:
-    container_name: meta2
     image: jiangxianfu/pegasus-docker:latest
     ports:
       - "34601"
@@ -49,7 +46,6 @@ services:
         ipv4_address: 172.21.0.12
     restart: on-failure
   meta3:
-    container_name: meta3
     image: jiangxianfu/pegasus-docker:latest
     ports:
       - "34601"
@@ -64,7 +60,6 @@ services:
         ipv4_address: 172.21.0.13
     restart: on-failure
   replica1:
-    container_name: replica1
     image: jiangxianfu/pegasus-docker:latest
     ports:
       - "34801"
@@ -79,7 +74,6 @@ services:
     networks:
       frontend:
   replica2:
-    container_name: replica2
     image: jiangxianfu/pegasus-docker:latest
     ports:
       - "34801"
@@ -94,7 +88,6 @@ services:
     networks:
       frontend:
   replica3:
-    container_name: replica3
     image: jiangxianfu/pegasus-docker:latest
     ports:
       - "34801"
@@ -109,7 +102,6 @@ services:
     networks:
       frontend:
   collector1:
-    container_name: collector1
     image: jiangxianfu/pegasus-docker:latest
     ports:
       - "34101"
