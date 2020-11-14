@@ -18,9 +18,10 @@ services:
     networks:
       frontend:
   meta1:
+    hostname: meta1
     image: jiangxianfu/pegasus-docker:latest
     ports:
-      - 34601:34601
+      - 34601
     volumes:
       - ./config.ini:/pegasus/bin/config.ini:ro
       - meta1-data-volume:/pegasus/data
@@ -31,7 +32,38 @@ services:
       frontend:
         ipv4_address: 172.21.0.11
     restart: on-failure
+  meta2:
+    hostname: meta2
+    image: jiangxianfu/pegasus-docker:latest
+    ports:
+      - 34602
+    volumes:
+      - ./config.ini:/pegasus/bin/config.ini:ro
+      - meta2-data-volume:/pegasus/data
+    command:
+      - meta
+    privileged: true
+    networks:
+      frontend:
+        ipv4_address: 172.21.0.12
+    restart: on-failure
+  meta3:
+    hostname: meta3
+    image: jiangxianfu/pegasus-docker:latest
+    ports:
+      - 34603
+    volumes:
+      - ./config.ini:/pegasus/bin/config.ini:ro
+      - meta3-data-volume:/pegasus/data
+    command:
+      - meta
+    privileged: true
+    networks:
+      frontend:
+        ipv4_address: 172.21.0.13
+    restart: on-failure
   replica1:
+    hostname: replica1
     image: jiangxianfu/pegasus-docker:latest
     ports:
       - 34801
@@ -45,7 +77,38 @@ services:
     restart: on-failure
     networks:
       frontend:
+  replica2:
+    hostname: replica2
+    image: jiangxianfu/pegasus-docker:latest
+    ports:
+      - 34802
+    volumes:
+      - ./config.ini:/pegasus/bin/config.ini:ro
+      - replica2-data-volumne:/pegasus/data
+      - replica2-slog-volumne:/pegasus/slog
+    command:
+      - replica
+    privileged: true
+    restart: on-failure
+    networks:
+      frontend:
+  replica3:
+    hostname: replica3
+    image: jiangxianfu/pegasus-docker:latest
+    ports:
+      - 34803
+    volumes:
+      - ./config.ini:/pegasus/bin/config.ini:ro
+      - replica3-data-volumne:/pegasus/data
+      - replica3-slog-volumne:/pegasus/slog
+    command:
+      - replica
+    privileged: true
+    restart: on-failure
+    networks:
+      frontend:
   collector1:
+    hostname: collector1
     image: jiangxianfu/pegasus-docker:latest
     ports:
       - 34101
@@ -60,6 +123,12 @@ services:
       frontend:
 volumes:
   meta1-data-volume:
+  meta2-data-volume:
+  meta3-data-volume:
   replica1-data-volumne:
   replica1-slog-volumne:
+  replica2-data-volumne:
+  replica2-slog-volumne:
+  replica3-data-volumne:
+  replica3-slog-volumne:
   collector1-data-volumne:
